@@ -9,7 +9,7 @@ class Categoria(models.Model):
 
 class Marca(models.Model):
     nome = models.CharField(max_length=50)
-    nacionalidade = models.CharField(null=True, blank=True)
+    nacionalidade = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.nome
