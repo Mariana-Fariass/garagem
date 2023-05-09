@@ -40,6 +40,7 @@ class Veiculo(models.Model):
     cor = models.ForeignKey(Cor, on_delete=models.PROTECT)
     ano = models.IntegerField(null=True, default=0)
     preco = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=0)
+    modelo= models.CharField(max_length=50)
 
     def __str__(self):
         return f"{self.marca} {self.categoria} {self.ano} {self.cor}"
