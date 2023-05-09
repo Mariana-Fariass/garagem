@@ -43,7 +43,7 @@ class Veiculo(models.Model):
     modelo= models.CharField(max_length=50)
 
     def __str__(self):
-        return f"{self.marca} {self.categoria} {self.ano} {self.cor}"
+        return f"{self.marca} {self.categoria} {self.ano} {self.cor} {self.modelo} "
     
     class Meta:
         verbose_name = "veículo"

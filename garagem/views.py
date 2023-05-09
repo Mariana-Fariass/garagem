@@ -1,7 +1,7 @@
 from pyexpat import model
 
 from django.forms import model_to_dict
-from rest_framework.serializers import ModelSerializer
+# from rest_framework.serializers import ModelSerializer
 from rest_framework.viewsets import ModelViewSet
 
 from garagem.models import  Marca, Categoria, Cor, Acessorio, Veiculo
@@ -26,6 +26,5 @@ class AcessorioViewSet(ModelViewSet):
 class VeiculoViewSet(ModelViewSet):
     queryset = Veiculo.objects.all()
     serializer_class = VeiculoSerializer
-
 
 
