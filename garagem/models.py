@@ -41,6 +41,7 @@ class Veiculo(models.Model):
     ano = models.IntegerField(null=True, default=0)
     preco = models.DecimalField(max_digits=10, decimal_places=2, null=True, default=0)
     modelo= models.CharField(max_length=50)
+    acessorios = models.ManyToManyField(Acessorio, related_name="veiculos")
 
     def __str__(self):
         return f"{self.marca} {self.categoria} {self.ano} {self.cor} {self.modelo} "
