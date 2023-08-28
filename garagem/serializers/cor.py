@@ -1,9 +1,9 @@
 from rest_framework.serializers import ModelSerializer
 
-from garagem.models import Categoria
+from garagem.models import Cor
 
 
-class CategoriaSerializer(ModelSerializer):
+class CorSerializer(ModelSerializer):
     class Meta:
-        model = Categoria
+        model = Cor
         fields = "__all__"

@@ -1,28 +1,37 @@
-from django.db import models
+from rest_framework.serializers import ModelSerializer, SlugRelatedField
 
-from garagem.models import Acessorio, Categoria, Cor, Marca
+from garagem.models import Veiculo
 #from uploader.models import Image
+#from uploader.serializers import ImageSerializer
 
 
-class Veiculo(models.Model):
-    marca = models.ForeignKey(Marca, on_delete=models.PROTECT, related_name="veiculos")
-    categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT, related_name="veiculos")
-    cor = models.ForeignKey(Cor, on_delete=models.PROTECT, related_name="veiculos")
-    ano = models.IntegerField(default=0, null=True, blank=True)
-    preco = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True, blank=True)
-    modelo = models.CharField(max_length=50)
-    acessorio = models.ManyToManyField(Acessorio, related_name="veículos")
-    #capa = models.ForeignKey(
-        #Image,
-        #related_name="+",
-        #on_delete=models.CASCADE,
-        #null=True,
-        #blank=True,
-        #default=None,
+class VeiculoSerializer(ModelSerializer):
+   # capa_attachment_key = (
+        #SlugRelatedField(
+         #   source="capa",
+          #  queryset=Image.objects.all(),
+           # slug_field="attachment_key",
+            #required=False,
+            #write_only=True,
+        #),
     #)
-
-    def __str__(self):
-        return f"Modelo: {self.modelo} (Cor: {self.cor} - Ano: {self.ano} - Marca: {self.marca})"
+    #capa = ImageSerializer(required=False, read_only=True)
 
     class Meta:
-        verbose_name = "veículo"
+        model = Veiculo
+        fields = "__all__"
+
+
+class VeiculoDetailSerializer(ModelSerializer):
+    #capa = ImageSerializer(required=False)
+
+    class Meta:
+        model = Veiculo
+        fields = "__all__"
+        depth = 1
+
+
+class VeiculoListSerializer(ModelSerializer):
+    class Meta:
+        model = Veiculo
+        fields = ["id", "modelo"]
