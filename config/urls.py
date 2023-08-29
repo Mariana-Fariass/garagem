@@ -1,4 +1,4 @@
-import statistics
+from django.conf.urls.static import static
 from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
@@ -28,4 +28,5 @@ urlpatterns = [
     path("api/", include(usuario_router.urls)),
     path("api/media/", include(uploader_router.urls)),
 ]
-urlpatterns += statistics(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += static(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)
