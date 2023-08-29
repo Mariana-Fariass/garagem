@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "usuario",
     "uploader",
+    "drf_spectacular",
     "garagem",
 ]
 
@@ -56,6 +57,17 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Livraria API",
+    "DESCRIPTION": "API para gerenciamento de garagem, incluindo endpoints e documentação.",
+    "VERSION": "1.0.0",
+}
 
 # REST_FRAMEWORK = {
 #     "DEFAULT_PERMISSION_CLASSES": [
@@ -144,7 +156,7 @@ AUTH_USER_MODEL = "usuario.Usuario"
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-# App Uploader settings
+  #App Uploader settings
 MEDIA_URL = "http://localhost:8000/media/"
 MEDIA_ENDPOINT = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
