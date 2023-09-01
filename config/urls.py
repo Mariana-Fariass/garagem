@@ -17,7 +17,7 @@ from usuario.router import router as usuario_router
 from rest_framework.routers import DefaultRouter
 from uploader.router import router as uploader_router
 
-from garagem.views import MarcaViewSet, CategoriaViewSet, CorViewSet, AcessorioViewSet, VeiculoViewSet
+from garagem.views import MarcaViewSet, CategoriaViewSet, CorViewSet, AcessorioViewSet, VeiculoViewSet, ModeloViewSet
 
 router = DefaultRouter()
 router.register(r"marcas", MarcaViewSet)
@@ -25,6 +25,7 @@ router.register(r"categorias", CategoriaViewSet)
 router.register(r"cores", CorViewSet)
 router.register(r"acessorios", AcessorioViewSet)
 router.register(r"veiculos", VeiculoViewSet)
+router.register (r"modelo", ModeloViewSet)
 
 
 urlpatterns = [
@@ -34,13 +35,6 @@ urlpatterns = [
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("api/", include(usuario_router.urls)),
     path("api/media/", include(uploader_router.urls)),
-    path("api/", include(router.urls)),
-]
-
-urlpatterns += static(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)
-
-urlpatterns = [
-    
     # OpenAPI 3
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path(
@@ -53,4 +47,7 @@ urlpatterns = [
         SpectacularRedocView.as_view(url_name="schema"),
         name="redoc",
     ),
+    path("api/", include(router.urls)),
 ]
+
+urlpatterns += static(settings.MEDIA_ENDPOINT, document_root=settings.MEDIA_ROOT)

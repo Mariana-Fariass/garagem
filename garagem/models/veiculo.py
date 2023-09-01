@@ -2,18 +2,21 @@
 
 from django.db import models
 
-from garagem.models import Acessorio, Categoria, Cor, Marca
+from garagem.models import Acessorio, Categoria, Cor, Marca, Modelo
 
 from uploader.models import Image
 
 
 class Veiculo(models.Model):
-    marca = models.ForeignKey(Marca, on_delete=models.PROTECT, related_name="veiculos")
-    categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT, related_name="veiculos")
+   # marca = models.ForeignKey(Marca, on_delete=models.PROTECT, related_name="veiculos")
+   # categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT, related_name="veiculos")
     cor = models.ForeignKey(Cor, on_delete=models.PROTECT, related_name="veiculos")
     ano = models.IntegerField(default=0, null=True, blank=True)
     preco = models.DecimalField(max_digits=10, decimal_places=2, default=0, null=True, blank=True)
-    modelo = models.CharField(max_length=50)
+    #modelo = models.CharField(max_length=50)
+    modelo = models.ForeignKey(
+        Modelo, on_delete=models.PROTECT, related_name="veiculos"
+        )
     acessorio = models.ManyToManyField(Acessorio, related_name="veículos")
     capa = models.ForeignKey(
        Image,
